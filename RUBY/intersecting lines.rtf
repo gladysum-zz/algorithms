@@ -1,0 +1,29 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 strArr=["(9,-2)", "(-2,9)", "(3,4)", "(10,11)"] \
+\
+(0..3).each do |i| \
+	strArr[i].gsub!("(", "") \
+	strArr[i].gsub!(")", "") \
+	strArr[i] = strArr[i].split(",")\
+	strArr[i][0] = strArr[i][0].to_i \
+	strArr[i][1] = strArr[i][1].to_i \
+end	 \
+line1 = strArr[0..1] \
+line2 = strArr[2..3] \
+slope1 = (line1[0][1] - line1[1][1]).fdiv(line1[0][0] - line1[1][0]) \
+slope2 = (line2[0][1] - line2[1][1]).fdiv(line2[0][0] - line2[1][0]) \
+y_intercept1 = line1[0][1] - slope1*line1[0][0] \
+y_intercept2 = line2[0][1] - slope2*line2[0][0]  \
+\
+return "no intersection" if slope1 == slope2 && y_intercept1 != y_intercept2 \
+\
+intersection_x = (y_intercept2 - y_intercept1).fdiv(slope1 - slope2)\
+intersection_y = slope1 * intersection_x + y_intercept1 \
+\
+\
+}
